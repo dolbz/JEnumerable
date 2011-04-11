@@ -6,7 +6,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.dolbz.jenumerable.altlambda.IndexTranslator;
+import com.dolbz.jenumerable.altlambda.Translator;
 import com.dolbz.jenumerable.helpers.JEnumerableAssert;
+import com.dolbz.jenumerable.helpers.ThrowingIterable;
 
 public class SelectTest {
 	@Rule
@@ -43,5 +46,17 @@ public class SelectTest {
 
 		exception.expect(IllegalArgumentException.class);
 		sourceWrap.select((IndexTranslator<Integer, String>) null);
+	}
+
+	@Test
+	public void ExecutionIsDeferred() {
+		JEnumerable<Integer> sourceEnumerable = new JEnumerable<Integer>(
+				new ThrowingIterable<Integer>());
+		sourceEnumerable.select(new Translator<Integer, String>() {
+			@Override
+			public String translate(final Integer source) {
+				return "Irrelevant";
+			}
+		});
 	}
 }
