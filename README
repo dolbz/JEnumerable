@@ -1,0 +1,17 @@
+JEnumerable
+---------------------------------
+
+JEnumerable is a Java implementation of the system.linq.Enumerable class in .NET
+
+The Java language hinders unlocking the true beauty/conciseness of LINQ but this is a best effort attempt and
+was initially for educational purposes. 
+
+I implemented this alongside reading Jon Skeet's blog series 'Reimplimenting LINQ to Objects'
+(http://msmvps.com/blogs/jon_skeet/archive/2010/09/03/reimplementing-linq-to-objects-part-1-introduction.aspx) 
+therefore there are parallels with Jon's code especially in the test cases.
+
+What JEnumerable cannot provide:
+- Extension methods. The JEnumerable class wraps an Iterable<T> which is an acceptable alternative
+- Lambda expressions. Unfortunately there's no good replacement for these. Anonymous classes are the compromise I chose to provide support for methods which take lambda expressions
+
+

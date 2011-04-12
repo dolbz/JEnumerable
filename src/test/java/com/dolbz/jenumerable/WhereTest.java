@@ -2,18 +2,14 @@ package com.dolbz.jenumerable;
 
 import java.util.Arrays;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import com.dolbz.jenumerable.altlambda.IndexPredicate;
 import com.dolbz.jenumerable.altlambda.Predicate;
 import com.dolbz.jenumerable.helpers.JEnumerableAssert;
 import com.dolbz.jenumerable.helpers.ThrowingIterable;
 
-public class WhereTest {
-	@Rule
-	public ExpectedException exception = ExpectedException.none();
+public class WhereTest extends JEnumerableTestBase {
 
 	// TODO IndexPredicate test
 

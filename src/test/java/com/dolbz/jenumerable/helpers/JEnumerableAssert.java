@@ -8,23 +8,26 @@ import com.dolbz.jenumerable.JEnumerable;
 
 public class JEnumerableAssert {
 
-	public static void assertEqual(JEnumerable<?> expected, JEnumerable<?> actual) {
+	public static void assertEqual(final JEnumerable<?> expected,
+			final JEnumerable<?> actual) {
 		Iterator<?> expectedIter = expected.iterator();
 		Iterator<?> actualIter = actual.iterator();
-		
-		while(expectedIter.hasNext()) {
+
+		while (expectedIter.hasNext()) {
 			if (actualIter.hasNext()) {
 				if (!expectedIter.next().equals(actualIter.next())) {
-					throw new AssertionFailedError("Elements not equal");
+					throw new AssertionFailedError("Elements are not equal");
 				}
 			} else {
-				throw new AssertionFailedError("Expected has more elements that actual");
+				throw new AssertionFailedError(
+						"Expected has more elements that actual");
 			}
 		}
-		
+
 		if (actualIter.hasNext()) {
-			throw new AssertionFailedError("Actual has more elements than expected");
+			throw new AssertionFailedError(
+					"Actual has more elements than expected");
 		}
-		
+
 	}
 }
