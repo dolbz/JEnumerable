@@ -24,7 +24,7 @@ import com.dolbz.jenumerable.exceptions.JEnumerableOverflowException;
  */
 public class JEnumerable<TSource> implements Iterable<TSource> {
 
-	public Iterable<TSource> wrappedIterable;
+	private final Iterable<TSource> wrappedIterable;
 
 	/**
 	 * Constructor to wrap an @Iterable so that we can unlock the JEnumerable
@@ -174,5 +174,47 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			}
 		}
 		return count;
+	}
+
+	/** SelectMany **/
+
+	// public <TResult> JEnumerable<TResult> selectMany() {
+	// // TODO
+	// }
+
+	/** Any **/
+	public boolean any() {
+		if (wrappedIterable.iterator().hasNext()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean any(final Predicate<TSource> predicate) {
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		for (TSource obj : wrappedIterable) {
+			if (predicate.check(obj)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/** All **/
+	public boolean all(final Predicate<TSource> predicate) {
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		for (TSource obj : wrappedIterable) {
+			if (!predicate.check(obj)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
