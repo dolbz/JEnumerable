@@ -1,5 +1,6 @@
 package com.dolbz.jenumerable;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -38,6 +39,16 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 		}
 
 		wrappedIterable = source;
+	}
+
+	/**
+	 * Constructor which takes an array of TSource elements
+	 * 
+	 * @param source
+	 *            the source array
+	 */
+	public JEnumerable(final TSource[] source) {
+		wrappedIterable = Arrays.asList(source);
 	}
 
 	public Iterator<TSource> iterator() {
@@ -216,5 +227,27 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			}
 		}
 		return true;
+	}
+
+	/** First **/
+	public TSource first() {
+		Iterator<TSource> iterator = wrappedIterable.iterator();
+		if (iterator.hasNext()) {
+			return iterator.next();
+		}
+		throw new IllegalStateException("Sequence was empty");
+	}
+
+	public TSource first(final Predicate<TSource> predicate) {
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		for (TSource obj : wrappedIterable) {
+			if (predicate.check(obj)) {
+				return obj;
+			}
+		}
+		throw new IllegalStateException("No items matched the predicate");
 	}
 }

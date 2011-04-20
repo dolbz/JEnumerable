@@ -35,7 +35,7 @@ public class SelectTest extends JEnumerableTestBase {
 	}
 
 	@Test
-	public void NullSelectorThrowsIllegalArgumentException() {
+	public void nullSelectorThrowsIllegalArgumentException() {
 		Integer[] source = { 1, 3, 7, 9, 10 };
 		JEnumerable<Integer> sourceWrap = new JEnumerable<Integer>(
 				Arrays.asList(source));
@@ -45,7 +45,7 @@ public class SelectTest extends JEnumerableTestBase {
 	}
 
 	@Test
-	public void ExecutionIsDeferred() {
+	public void executionIsDeferred() {
 		JEnumerable<Integer> sourceEnumerable = new JEnumerable<Integer>(
 				new ThrowingIterable<Integer>());
 		sourceEnumerable.select(new Translator<Integer, String>() {
