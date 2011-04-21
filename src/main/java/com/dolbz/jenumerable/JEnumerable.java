@@ -248,6 +248,45 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 				return obj;
 			}
 		}
-		throw new IllegalStateException("No items matched the predicate");
+		throw new IllegalStateException("No elements matched the predicate");
+	}
+
+	/** Single **/
+	public TSource single() {
+		Iterator<TSource> iterator = wrappedIterable.iterator();
+		if (iterator.hasNext()) {
+			TSource returnVal = iterator.next();
+			if (iterator.hasNext()) {
+				throw new IllegalStateException(
+						"More than a single element in the sequence");
+			} else {
+				return returnVal;
+			}
+		}
+		throw new IllegalStateException("Sequence was empty");
+	}
+
+	public TSource single(final Predicate<TSource> predicate) {
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		TSource returnCandidate = null;
+
+		for (TSource obj : wrappedIterable) {
+			if (predicate.check(obj)) {
+				if (returnCandidate != null) {
+					throw new IllegalStateException(
+							"More than a single element in the sequence");
+				}
+				returnCandidate = obj;
+			}
+		}
+
+		if (returnCandidate != null) {
+			return returnCandidate;
+		} else {
+			throw new IllegalStateException("No elements matched the predicate");
+		}
 	}
 }
