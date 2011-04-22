@@ -16,9 +16,8 @@ import com.dolbz.jenumerable.exceptions.JEnumerableOverflowException;
  * 
  * @see http://msdn.microsoft.com/en-us/library/system.linq.enumerable.aspx
  * 
- *      Using an interface as Java's @java.lang.Iterable can't have extension
- *      methods attached to it :( JEnumerable implementers will probably wrap
- *      Iterable's
+ *      Using a wrapper as Java's @java.lang.Iterable can't have extension
+ *      methods attached to it :(
  * 
  * @author nrandle
  * 
@@ -249,6 +248,37 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			}
 		}
 		throw new IllegalStateException("No elements matched the predicate");
+	}
+
+	/** Last **/
+	public TSource last() {
+		if (wrappedIterable.iterator().hasNext()) {
+			TSource latest = null;
+			for (TSource obj : wrappedIterable) {
+				latest = obj;
+			}
+			return latest;
+		} else {
+			throw new IllegalStateException("Sequence was empty");
+		}
+	}
+
+	public TSource last(final Predicate<TSource> predicate) {
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		TSource latest = null;
+		for (TSource obj : wrappedIterable) {
+			if (predicate.check(obj)) {
+				latest = obj;
+			}
+		}
+		if (latest == null) {
+			throw new IllegalStateException("No elements matched the predicate");
+		} else {
+			return latest;
+		}
 	}
 
 	/** Single **/
