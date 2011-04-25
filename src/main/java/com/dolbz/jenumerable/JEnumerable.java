@@ -9,6 +9,8 @@ import com.dolbz.jenumerable.altlambda.IndexTranslator;
 import com.dolbz.jenumerable.altlambda.Predicate;
 import com.dolbz.jenumerable.altlambda.Translator;
 import com.dolbz.jenumerable.exceptions.JEnumerableOverflowException;
+import com.dolbz.jenumerable.util.DefaultEqualityComparer;
+import com.dolbz.jenumerable.util.EqualityComparer;
 
 /**
  * Implementation class for JEnumerable. Has/will have equivalent methods to
@@ -318,5 +320,18 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 		} else {
 			throw new IllegalStateException("No elements matched the predicate");
 		}
+	}
+
+	/** Distinct **/
+
+	public JEnumerable<TSource> distinct() {
+		return new JEnumerable<TSource>(new DistinctIterable<TSource>(
+				wrappedIterable, new DefaultEqualityComparer<TSource>()));
+	}
+
+	public JEnumerable<TSource> distinct(
+			final EqualityComparer<TSource> comparer) {
+		return new JEnumerable<TSource>(new DistinctIterable<TSource>(
+				wrappedIterable, comparer));
 	}
 }

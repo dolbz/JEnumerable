@@ -35,9 +35,9 @@ class WhereIterable<TSource> implements Iterable<TSource> {
 
 	private class WhereIterator implements Iterator<TSource> {
 
-		Iterator<TSource> sourceIterator = source.iterator();
-		Integer index = 0;
-		boolean onCheckedMatch = false;
+		private final Iterator<TSource> sourceIterator = source.iterator();
+		private Integer index = 0;
+		private boolean onCheckedMatch = false;
 		private TSource currentItem;
 
 		public boolean hasNext() {

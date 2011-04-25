@@ -1,6 +1,8 @@
 package com.dolbz.jenumerable.helpers;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import junit.framework.AssertionFailedError;
 
@@ -13,14 +15,26 @@ public class JEnumerableAssert {
 		Iterator<?> expectedIter = expected.iterator();
 		Iterator<?> actualIter = actual.iterator();
 
+		List<Object> actualSeen = new ArrayList<Object>();
+
 		while (expectedIter.hasNext()) {
 			if (actualIter.hasNext()) {
-				if (!expectedIter.next().equals(actualIter.next())) {
+				Object expectedNext = expectedIter.next();
+				Object actualNext = actualIter.next();
+				actualSeen.add(actualNext);
+				if (expectedNext == null && actualNext == null) {
+					// Both null is fine
+				} else if (expectedNext == null || actualNext == null) {
+					throw new AssertionFailedError("Elements are not equal");
+				} else if (!expectedNext.equals(actualNext)) {
 					throw new AssertionFailedError("Elements are not equal");
 				}
 			} else {
-				throw new AssertionFailedError(
-						"Expected has more elements that actual");
+				String message = "Expected has more elements than actual: ";
+				for (Object seen : actualSeen) {
+					message += "[" + seen.toString() + "], ";
+				}
+				throw new AssertionFailedError(message);
 			}
 		}
 
