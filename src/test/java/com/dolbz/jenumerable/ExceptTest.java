@@ -12,14 +12,14 @@ import com.dolbz.jenumerable.helpers.JEnumerableAssert;
 import com.dolbz.jenumerable.helpers.ThrowingIterable;
 import com.dolbz.jenumerable.util.DefaultEqualityComparer;
 
-public class IntersectTest extends JEnumerableTestBase {
+public class ExceptTest extends JEnumerableTestBase {
 	@Test
 	public void nullSecondWithoutComparer() {
 		JEnumerable<String> first = new JEnumerable<String>(new String[] {});
 		JEnumerable<String> second = null;
 
 		exception.expect(IllegalArgumentException.class);
-		first.except(second);
+		first.intersect(second);
 	}
 
 	@Test
@@ -28,33 +28,33 @@ public class IntersectTest extends JEnumerableTestBase {
 		JEnumerable<String> second = null;
 
 		exception.expect(IllegalArgumentException.class);
-		first.except(second, new DefaultEqualityComparer<String>());
+		first.intersect(second, new DefaultEqualityComparer<String>());
 	}
 
 	@Test
 	public void noComparerSpecified() {
 		JEnumerable<String> first = new JEnumerable<String>(new String[] { "A",
-				"a", "b", "c", "b", "c" });
+				"a", "b", "c", "b" });
 		JEnumerable<String> second = new JEnumerable<String>(new String[] {
 				"b", "a", "d", "a" });
 
 		JEnumerable<String> expected = new JEnumerable<String>(new String[] {
-				"A", "c" });
+				"a", "b" });
 
-		JEnumerableAssert.assertEqual(expected, first.except(second));
+		JEnumerableAssert.assertEqual(expected, first.intersect(second));
 	}
 
 	@Test
 	public void nullComparerSpecified() {
 		JEnumerable<String> first = new JEnumerable<String>(new String[] { "A",
-				"a", "b", "c", "b", "c" });
+				"a", "b", "c", "b" });
 		JEnumerable<String> second = new JEnumerable<String>(new String[] {
 				"b", "a", "d", "a" });
 
 		JEnumerable<String> expected = new JEnumerable<String>(new String[] {
-				"A", "c" });
+				"a", "b" });
 
-		JEnumerableAssert.assertEqual(expected, first.except(second));
+		JEnumerableAssert.assertEqual(expected, first.intersect(second));
 	}
 
 	@Test
@@ -64,11 +64,11 @@ public class IntersectTest extends JEnumerableTestBase {
 		JEnumerable<String> second = new JEnumerable<String>(new String[] {
 				"b", "a", "d", "a" });
 
-		JEnumerable<String> expected = new JEnumerable<String>(
-				new String[] { "c" });
+		JEnumerable<String> expected = new JEnumerable<String>(new String[] {
+				"A", "b" });
 
 		JEnumerableAssert.assertEqual(expected,
-				first.except(second, new CaseInsensitiveStringComparer()));
+				first.intersect(second, new CaseInsensitiveStringComparer()));
 	}
 
 	@Test
@@ -82,14 +82,14 @@ public class IntersectTest extends JEnumerableTestBase {
 		JEnumerable<String> second = new JEnumerable<String>(
 				new ThrowingIterable<String>());
 
-		JEnumerable<String> result = first.except(second);
+		JEnumerable<String> result = first.intersect(second);
 		Iterator<String> iterator = result.iterator();
 		exception.expect(UnsupportedOperationException.class);
 		iterator.next();
 	}
 
 	@Test
-	public void secondSequenceReadFullyOnFirstResultIteration() {
+	public void secondSequenceReadFullyONFirstResultIteration() {
 		JEnumerable<Integer> first = new JEnumerable<Integer>(
 				new Integer[] { 1 });
 		JEnumerable<Integer> second = new JEnumerable<Integer>(new Integer[] {
@@ -103,7 +103,7 @@ public class IntersectTest extends JEnumerableTestBase {
 					}
 				});
 
-		JEnumerable<Integer> result = first.except(secondQuery);
+		JEnumerable<Integer> result = first.intersect(secondQuery);
 		exception.expect(ArithmeticException.class);
 		result.iterator().next();
 	}
@@ -123,9 +123,9 @@ public class IntersectTest extends JEnumerableTestBase {
 		JEnumerable<Integer> second = new JEnumerable<Integer>(
 				new Integer[] { 1 });
 
-		JEnumerable<Integer> result = firstQuery.except(second);
+		JEnumerable<Integer> result = firstQuery.intersect(second);
 		Iterator<Integer> iterator = result.iterator();
-		Assert.assertEquals((Integer) 5, iterator.next());
+		Assert.assertEquals((Integer) 1, iterator.next());
 		exception.expect(ArithmeticException.class);
 		iterator.next();
 	}
