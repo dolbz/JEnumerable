@@ -355,4 +355,25 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 		return new JEnumerable<TSource>(new UnionIterable<TSource>(
 				wrappedIterable, second, comparer));
 	}
+
+	/** Intersect **/
+
+	public JEnumerable<TSource> intersect(final JEnumerable<TSource> second) {
+		if (second == null) {
+			throw new IllegalArgumentException("second sequence is null");
+		}
+
+		return new JEnumerable<TSource>(
+				new IntersectIterable<TSource>(wrappedIterable, second,
+						new DefaultEqualityComparer<TSource>()));
+	}
+
+	public JEnumerable<TSource> intersect(final JEnumerable<TSource> second,
+			final EqualityComparer<TSource> comparer) {
+		if (second == null) {
+			throw new IllegalArgumentException("second sequence is null");
+		}
+		return new JEnumerable<TSource>(new IntersectIterable<TSource>(
+				wrappedIterable, second, comparer));
+	}
 }

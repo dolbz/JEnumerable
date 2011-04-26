@@ -23,7 +23,7 @@ public class ComparableHashSet<E> implements Serializable, Cloneable,
 		this.internalHashSet = new HashSet<ComparableObjectWrapper<E>>();
 	}
 
-	public ComparableHashSet(final Collection<? extends E> arg0,
+	public ComparableHashSet(final Iterable<? extends E> arg0,
 			final EqualityComparer<E> comparer) {
 		this.comparer = comparer;
 
@@ -82,7 +82,8 @@ public class ComparableHashSet<E> implements Serializable, Cloneable,
 	}
 
 	public boolean remove(final Object o) {
-		return internalHashSet.remove(o);
+		return internalHashSet.remove(new ComparableObjectWrapper<E>((E) o,
+				comparer));
 	}
 
 	public boolean removeAll(final Collection<?> c) {

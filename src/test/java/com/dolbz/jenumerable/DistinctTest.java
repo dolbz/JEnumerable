@@ -110,16 +110,7 @@ public class DistinctTest extends JEnumerableTestBase {
 				"xyz", testString1, "XYZ", testString2, "def" });
 
 		JEnumerable<String> result = source
-				.distinct(new EqualityComparer<String>() {
-
-					public int getHashCode(final String obj) {
-						return obj.toLowerCase().hashCode();
-					}
-
-					public boolean equals(final String x, final String y) {
-						return x.toLowerCase().equals(y.toLowerCase());
-					}
-				});
+				.distinct(new CaseInsensitiveStringComparer());
 
 		JEnumerable<String> expected = new JEnumerable<String>(new String[] {
 				"xyz", testString1, "def" });

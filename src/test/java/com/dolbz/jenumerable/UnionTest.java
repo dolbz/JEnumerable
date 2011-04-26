@@ -9,7 +9,6 @@ import org.junit.Test;
 import com.dolbz.jenumerable.helpers.JEnumerableAssert;
 import com.dolbz.jenumerable.helpers.ThrowingIterable;
 import com.dolbz.jenumerable.util.DefaultEqualityComparer;
-import com.dolbz.jenumerable.util.EqualityComparer;
 
 public class UnionTest extends JEnumerableTestBase {
 
@@ -65,16 +64,7 @@ public class UnionTest extends JEnumerableTestBase {
 		JEnumerable<String> expected = new JEnumerable<String>(new String[] {
 				"a", "b", "c", "d", "e" });
 		JEnumerableAssert.assertEqual(expected,
-				first.union(second, new EqualityComparer<String>() {
-
-					public int getHashCode(final String obj) {
-						return obj.toLowerCase().hashCode();
-					}
-
-					public boolean equals(final String x, final String y) {
-						return x.toLowerCase().equals(y.toLowerCase());
-					}
-				}));
+				first.union(second, new CaseInsensitiveStringComparer()));
 	}
 
 	@Test
