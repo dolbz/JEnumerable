@@ -1,14 +1,22 @@
 package com.dolbz.jenumerable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Dictionary;
 import java.util.Iterator;
+import java.util.List;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import com.dolbz.jenumerable.altlambda.DualTranslator;
 import com.dolbz.jenumerable.altlambda.IndexPredicate;
 import com.dolbz.jenumerable.altlambda.IndexTranslator;
 import com.dolbz.jenumerable.altlambda.Predicate;
 import com.dolbz.jenumerable.altlambda.Translator;
 import com.dolbz.jenumerable.exceptions.JEnumerableOverflowException;
+import com.dolbz.jenumerable.interfaces.Grouping;
+import com.dolbz.jenumerable.interfaces.Lookup;
 import com.dolbz.jenumerable.util.DefaultEqualityComparer;
 import com.dolbz.jenumerable.util.EqualityComparer;
 
@@ -396,5 +404,212 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 		}
 		return new JEnumerable<TSource>(new ExceptIterable<TSource>(
 				wrappedIterable, second, comparer));
+	}
+
+	/** ToLookup **/
+
+	public <TKey> Lookup<TKey, TSource> toLookup(
+			final Translator<TSource, TKey> keySelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> Lookup<TKey, TSource> toLookup(
+			final Translator<TSource, TKey> keySelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> Lookup<TKey, TElement> toLookup(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> Lookup<TKey, TElement> toLookup(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** Join **/
+	// TOuter is the same as TSource. In java we can't choose a different name
+	// so sticking with TSource
+
+	public <TInner, TKey, TResult> JEnumerable<TResult> join(
+			final JEnumerable<TInner> inner,
+			final Translator<TSource, TKey> outerKeySelector,
+			final Translator<TSource, TKey> innerKeySelector,
+			final DualTranslator<TSource, TInner, TResult> resultSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TInner, TKey, TResult> JEnumerable<TResult> join(
+			final JEnumerable<TInner> inner,
+			final Translator<TSource, TKey> outerKeySelector,
+			final Translator<TSource, TKey> innerKeySelector,
+			final DualTranslator<TSource, TInner, TResult> resultSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** ToList **/
+
+	public List<TSource> toList() {
+		List<TSource> result = new ArrayList<TSource>();
+
+		for (TSource elem : wrappedIterable) {
+			result.add(elem);
+		}
+		return result;
+	}
+
+	/** GroupBy **/
+
+	public <TKey> JEnumerable<Grouping<TKey, TSource>> groupBy(
+			final Translator<TSource, TKey> keySelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> JEnumerable<Grouping<TKey, TSource>> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> JEnumerable<Grouping<TKey, TSource>> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> JEnumerable<Grouping<TKey, TSource>> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TResult> JEnumerable<TResult> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TResult> JEnumerable<TResult> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement, TResult> JEnumerable<TResult> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector,
+			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement, TResult> JEnumerable<TResult> groupBy(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector,
+			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** GroupJoin **/
+
+	public <TInner, TKey, TResult> JEnumerable<TResult> groupJoin(
+			final JEnumerable<TInner> inner,
+			final Translator<TSource, TKey> outerKeySelector,
+			final Translator<TInner, TKey> innerKeySelector,
+			final DualTranslator<TSource, JEnumerable<TInner>, TResult> resultSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TInner, TKey, TResult> JEnumerable<TResult> groupJoin(
+			final JEnumerable<TInner> inner,
+			final Translator<TSource, TKey> outerKeySelector,
+			final Translator<TInner, TKey> innerKeySelector,
+			final DualTranslator<TSource, JEnumerable<TInner>, TResult> resultSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** Take **/
+
+	public JEnumerable<TSource> take(final int count) {
+		throw new NotImplementedException();
+	}
+
+	/** TakeWhile **/
+
+	public JEnumerable<TSource> takeWhile(final Predicate<TSource> predicate) {
+		throw new NotImplementedException();
+	}
+
+	public JEnumerable<TSource> takeWhile(
+			final IndexPredicate<TSource> predicate) {
+		throw new NotImplementedException();
+	}
+
+	/** Skip **/
+
+	public JEnumerable<TSource> skip(final int count) {
+		throw new NotImplementedException();
+	}
+
+	/** SkipWhile **/
+
+	public JEnumerable<TSource> skipWhile(final Predicate<TSource> predicate) {
+		throw new NotImplementedException();
+	}
+
+	public JEnumerable<TSource> skipWhile(
+			final IndexPredicate<TSource> predicate) {
+		throw new NotImplementedException();
+	}
+
+	/** ToArray **/
+
+	public Object[] toArray() {
+		// TODO this should return a TSource[]. I don't think this is possible
+		// in Java due to type erasure? Could take a clazz parameter here to
+		// return the correct array type? Something like...
+
+		/*
+		 * public static <T> T[] createArray(List<T> list,Class<T> clazz){ T[]
+		 * array = (T[]) Array.newInstance(clazz, list.size()); for(int i = 0; i
+		 * < array.length; i++){ array[i] = list.get(i); } return array; }
+		 */
+
+		return this.toList().toArray();
+	}
+
+	/** ToDictionary **/
+
+	public <TKey> Dictionary<TKey, TSource> toDictionary(
+			final Translator<TSource, TKey> keySelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> Dictionary<TKey, TElement> toDictionary(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> Dictionary<TKey, TSource> toDictionary(
+			final Translator<TSource, TKey> keySelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey, TElement> Dictionary<TKey, TElement> toDictionary(
+			final Translator<TSource, TKey> keySelector,
+			final Translator<TSource, TElement> elementSelector,
+			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
 	}
 }
