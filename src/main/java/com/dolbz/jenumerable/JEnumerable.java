@@ -3,6 +3,7 @@ package com.dolbz.jenumerable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Iterator;
 import java.util.List;
@@ -14,9 +15,14 @@ import com.dolbz.jenumerable.altlambda.IndexPredicate;
 import com.dolbz.jenumerable.altlambda.IndexTranslator;
 import com.dolbz.jenumerable.altlambda.Predicate;
 import com.dolbz.jenumerable.altlambda.Translator;
+import com.dolbz.jenumerable.altlambda.numeric.DoubleTranslator;
+import com.dolbz.jenumerable.altlambda.numeric.FloatTranslator;
+import com.dolbz.jenumerable.altlambda.numeric.IntegerTranslator;
+import com.dolbz.jenumerable.altlambda.numeric.LongTranslator;
 import com.dolbz.jenumerable.exceptions.JEnumerableOverflowException;
 import com.dolbz.jenumerable.interfaces.Grouping;
 import com.dolbz.jenumerable.interfaces.Lookup;
+import com.dolbz.jenumerable.interfaces.OrderedEnumerable;
 import com.dolbz.jenumerable.util.DefaultEqualityComparer;
 import com.dolbz.jenumerable.util.EqualityComparer;
 
@@ -610,6 +616,160 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector,
 			final EqualityComparer<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** OrderBy **/
+
+	public <TKey> OrderedEnumerable<TSource> orderBy(
+			final Translator<TSource, TKey> keySelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> OrderedEnumerable<TSource> orderBy(
+			final Translator<TSource, TKey> keySelector,
+			final Comparator<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> OrderedEnumerable<TSource> orderByDescending(
+			final Translator<TSource, TKey> keySelector) {
+		throw new NotImplementedException();
+	}
+
+	public <TKey> OrderedEnumerable<TSource> orderByDescending(
+			final Translator<TSource, TKey> keySelector,
+			final Comparator<TKey> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** ThenBy can be found on the OrderedEnumerable interface **/
+
+	/** Reverse **/
+
+	public JEnumerable<TSource> reverse() {
+		throw new NotImplementedException();
+	}
+
+	/** Sum **/
+
+	// public int sum() {
+	// // TODO how to determine whether this is a valid JEnumerable type??
+	// throw new NotImplementedException();
+	// }
+
+	// All of the numeric methods need special translators to prevent type
+	// erasure from giving the methods identical signatures...annoying...
+
+	public Integer sum(final IntegerTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Long sum(final LongTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Float sum(final FloatTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Double sum(final DoubleTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	/** Min **/
+
+	public Integer min() {
+		throw new NotImplementedException();
+	}
+
+	public Integer min(final IntegerTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Long min(final LongTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Float min(final FloatTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Double min(final DoubleTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	/** Max **/
+
+	public Integer max() {
+		throw new NotImplementedException();
+	}
+
+	public Integer max(final IntegerTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Long max(final LongTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Float max(final FloatTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Double max(final DoubleTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	/** Average **/
+
+	// public Double average() {
+	// throw new NotImplementedException();
+	// }
+
+	public Double average(final IntegerTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Double average(final LongTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Float average(final FloatTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	public Double average(final DoubleTranslator<TSource> selector) {
+		throw new NotImplementedException();
+	}
+
+	/** Contains **/
+
+	public boolean contains(final TSource value) {
+		throw new NotImplementedException();
+	}
+
+	public boolean contains(final TSource value,
+			final EqualityComparer<TSource> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** SequenceEqual **/
+
+	public boolean sequenceEqual(final JEnumerable<TSource> second) {
+		throw new NotImplementedException();
+	}
+
+	public boolean sequenceEqual(final JEnumerable<TSource> second,
+			final EqualityComparer<TSource> comparer) {
+		throw new NotImplementedException();
+	}
+
+	/** Zip **/
+
+	public <TSecond, TResult> JEnumerable<TResult> zip(
+			final JEnumerable<TSecond> second,
+			final DualTranslator<TSource, TSecond, TResult> resultSelector) {
 		throw new NotImplementedException();
 	}
 }

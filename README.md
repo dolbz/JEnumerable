@@ -1,5 +1,5 @@
 JEnumerable
----------------------------------
+===========
 
 JEnumerable is an attempt at a Java implementation of the system.linq.Enumerable class 
 from .NET 3.5+
@@ -15,7 +15,7 @@ use beyond that. If you see a potential application for it however please go ahe
 
 
 Getting Started
-----------------------------------
+---------------
 
 As we don't have extension methods in Java, JEnumerable wraps a 'source' Iterable object:
 
@@ -44,5 +44,5 @@ The same can be achieved in Java through JEnumerable with the following code:
 				
 		
 License
-----------------------------------
+-------
 Please read the LICENSE file
