@@ -336,6 +336,55 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 		}
 	}
 
+	/** Aggregate **/
+
+	public TSource aggregate(
+			final DualTranslator<TSource, TSource, TSource> func) {
+		if (func == null) {
+			throw new IllegalArgumentException("func is null");
+		}
+
+		Iterator<TSource> iterator = wrappedIterable.iterator();
+		if (!iterator.hasNext()) {
+			throw new IllegalStateException("source JEnumerable was empty");
+		}
+		TSource current = iterator.next();
+		while (iterator.hasNext()) {
+			current = func.translate(current, iterator.next());
+		}
+
+		return current;
+	}
+
+	public <TAccumulate> TAccumulate aggregate(final TAccumulate seed,
+			final DualTranslator<TAccumulate, TSource, TAccumulate> func) {
+		return this.aggregate(seed, func,
+				new Translator<TAccumulate, TAccumulate>() {
+					@Override
+					public TAccumulate translate(final TAccumulate source) {
+						return source;
+					}
+				});
+	}
+
+	public <TAccumulate, TResult> TResult aggregate(final TAccumulate seed,
+			final DualTranslator<TAccumulate, TSource, TAccumulate> func,
+			final Translator<TAccumulate, TResult> resultSelector) {
+		if (func == null) {
+			throw new IllegalArgumentException("func is null");
+		}
+		if (resultSelector == null) {
+			throw new IllegalArgumentException("resultSelector is null");
+		}
+
+		TAccumulate current = seed;
+		for (TSource item : wrappedIterable) {
+			current = func.translate(current, item);
+		}
+
+		return resultSelector.translate(current);
+	}
+
 	/** Distinct **/
 
 	public JEnumerable<TSource> distinct() {

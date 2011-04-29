@@ -6,8 +6,9 @@ from .NET 3.5+
 
 I am implementing this alongside reading Jon Skeet's blog series 'Reimplimenting LINQ to 
 Objects' therefore there are parallels with Jon's code especially in the test cases. The 
-start of the blog series can be found at the following URL:
-http://msmvps.com/blogs/jon_skeet/archive/2010/09/03/reimplementing-linq-to-objects-part-1-introduction.aspx 
+start of the blog series can be found at [Jon's MVP blog][reimpllinq]
+
+[reimpllinq]: http://msmvps.com/blogs/jon_skeet/archive/2010/09/03/reimplementing-linq-to-objects-part-1-introduction.aspx 
 
 JEnumerable was created to help me learn more about the LINQ methods and to simply see if 
 it is possible to be implemented in Java in a somewhat usable form. It may not have much 
