@@ -595,7 +595,8 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** Take **/
 
 	public JEnumerable<TSource> take(final int count) {
-		throw new NotImplementedException();
+		return new JEnumerable<TSource>(new TakeIterable<TSource>(count,
+				wrappedIterable));
 	}
 
 	/** TakeWhile **/
