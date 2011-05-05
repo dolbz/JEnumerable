@@ -465,26 +465,26 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 
 	public <TKey> Lookup<TKey, TSource> toLookup(
 			final Translator<TSource, TKey> keySelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> Lookup<TKey, TSource> toLookup(
 			final Translator<TSource, TKey> keySelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> Lookup<TKey, TElement> toLookup(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> Lookup<TKey, TElement> toLookup(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Join **/
@@ -496,7 +496,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TSource, TKey> outerKeySelector,
 			final Translator<TSource, TKey> innerKeySelector,
 			final DualTranslator<TSource, TInner, TResult> resultSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TInner, TKey, TResult> JEnumerable<TResult> join(
@@ -505,7 +505,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TSource, TKey> innerKeySelector,
 			final DualTranslator<TSource, TInner, TResult> resultSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** ToList **/
@@ -523,46 +523,46 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 
 	public <TKey> JEnumerable<Grouping<TKey, TSource>> groupBy(
 			final Translator<TSource, TKey> keySelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> JEnumerable<Grouping<TKey, TSource>> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> JEnumerable<Grouping<TKey, TSource>> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> JEnumerable<Grouping<TKey, TSource>> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TResult> JEnumerable<TResult> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TResult> JEnumerable<TResult> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement, TResult> JEnumerable<TResult> groupBy(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector,
 			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement, TResult> JEnumerable<TResult> groupBy(
@@ -570,7 +570,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TSource, TElement> elementSelector,
 			final DualTranslator<TKey, JEnumerable<TSource>, TResult> resultSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** GroupJoin **/
@@ -580,7 +580,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TSource, TKey> outerKeySelector,
 			final Translator<TInner, TKey> innerKeySelector,
 			final DualTranslator<TSource, JEnumerable<TInner>, TResult> resultSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TInner, TKey, TResult> JEnumerable<TResult> groupJoin(
@@ -589,7 +589,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 			final Translator<TInner, TKey> innerKeySelector,
 			final DualTranslator<TSource, JEnumerable<TInner>, TResult> resultSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Take **/
@@ -628,18 +628,19 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** Skip **/
 
 	public JEnumerable<TSource> skip(final int count) {
-		throw new NotImplementedException();
+		return new JEnumerable<TSource>(new SkipIterable<TSource>(count,
+				wrappedIterable));
 	}
 
 	/** SkipWhile **/
 
 	public JEnumerable<TSource> skipWhile(final Predicate<TSource> predicate) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public JEnumerable<TSource> skipWhile(
 			final IndexPredicate<TSource> predicate) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** ToArray **/
@@ -662,50 +663,50 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 
 	public <TKey> Dictionary<TKey, TSource> toDictionary(
 			final Translator<TSource, TKey> keySelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> Dictionary<TKey, TElement> toDictionary(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> Dictionary<TKey, TSource> toDictionary(
 			final Translator<TSource, TKey> keySelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey, TElement> Dictionary<TKey, TElement> toDictionary(
 			final Translator<TSource, TKey> keySelector,
 			final Translator<TSource, TElement> elementSelector,
 			final EqualityComparer<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** OrderBy **/
 
 	public <TKey> OrderedEnumerable<TSource> orderBy(
 			final Translator<TSource, TKey> keySelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> OrderedEnumerable<TSource> orderBy(
 			final Translator<TSource, TKey> keySelector,
 			final Comparator<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> OrderedEnumerable<TSource> orderByDescending(
 			final Translator<TSource, TKey> keySelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public <TKey> OrderedEnumerable<TSource> orderByDescending(
 			final Translator<TSource, TKey> keySelector,
 			final Comparator<TKey> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** ThenBy can be found on the OrderedEnumerable interface **/
@@ -713,121 +714,121 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** Reverse **/
 
 	public JEnumerable<TSource> reverse() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Sum **/
 
 	// public int sum() {
 	// // TODO how to determine whether this is a valid JEnumerable type??
-	// throw new NotImplementedException();
+	// throw new NotImplementedException(); // TODO
 	// }
 
 	// All of the numeric methods need special translators to prevent type
 	// erasure from giving the methods identical signatures...annoying...
 
 	public Integer sum(final IntegerTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Long sum(final LongTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Float sum(final FloatTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Double sum(final DoubleTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Min **/
 
 	public Integer min() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Integer min(final IntegerTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Long min(final LongTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Float min(final FloatTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Double min(final DoubleTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Max **/
 
 	public Integer max() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Integer max(final IntegerTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Long max(final LongTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Float max(final FloatTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Double max(final DoubleTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Average **/
 
 	// public Double average() {
-	// throw new NotImplementedException();
+	// throw new NotImplementedException(); // TODO
 	// }
 
 	public Double average(final IntegerTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Double average(final LongTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Float average(final FloatTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public Double average(final DoubleTranslator<TSource> selector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Contains **/
 
 	public boolean contains(final TSource value) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public boolean contains(final TSource value,
 			final EqualityComparer<TSource> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** SequenceEqual **/
 
 	public boolean sequenceEqual(final JEnumerable<TSource> second) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	public boolean sequenceEqual(final JEnumerable<TSource> second,
 			final EqualityComparer<TSource> comparer) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 
 	/** Zip **/
@@ -835,6 +836,6 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	public <TSecond, TResult> JEnumerable<TResult> zip(
 			final JEnumerable<TSecond> second,
 			final DualTranslator<TSource, TSecond, TResult> resultSelector) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // TODO
 	}
 }
