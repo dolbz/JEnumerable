@@ -30,14 +30,15 @@ class TakeWhileIterable<TSource> implements Iterable<TSource> {
 		public boolean hasNext() {
 			if (onCheckedMatch) {
 				return true;
-			}
-			if (sourceIterator.hasNext()) {
-				if (!onCheckedMatch) {
-					currentItem = sourceIterator.next();
-				}
-				if (predicate.check(currentItem, index++)) {
-					onCheckedMatch = true;
-					return true;
+			} else {
+				if (sourceIterator.hasNext()) {
+					if (!onCheckedMatch) {
+						currentItem = sourceIterator.next();
+					}
+					if (predicate.check(currentItem, index++)) {
+						onCheckedMatch = true;
+						return true;
+					}
 				}
 			}
 			return false;
@@ -50,7 +51,6 @@ class TakeWhileIterable<TSource> implements Iterable<TSource> {
 			} else if (sourceIterator.hasNext()) {
 				currentItem = sourceIterator.next();
 				if (predicate.check(currentItem, index++)) {
-					onCheckedMatch = false;
 					return currentItem;
 				}
 			}

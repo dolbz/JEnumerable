@@ -41,29 +41,30 @@ class WhereIterable<TSource> implements Iterable<TSource> {
 		private TSource currentItem;
 
 		public boolean hasNext() {
-			// There is no concept of hasNext for IEnumerable. Have to jump
-			// through hoops to ensure hasNext() and next() work nicely with the
-			// deferred execution
-			while (sourceIterator.hasNext()) {
-				if (!onCheckedMatch) {
+			if (onCheckedMatch) {
+				return true;
+			} else {
+				while (sourceIterator.hasNext()) {
 					currentItem = sourceIterator.next();
-				}
-				if (predicate.check(currentItem, index++)) {
-					onCheckedMatch = true;
-					return true;
+					if (predicate.check(currentItem, index++)) {
+						onCheckedMatch = true;
+						return true;
+					}
 				}
 			}
 			return false;
 		}
 
 		public TSource next() {
-			while (onCheckedMatch || sourceIterator.hasNext()) {
-				if (!onCheckedMatch) {
+			if (onCheckedMatch) {
+				onCheckedMatch = false;
+				return currentItem;
+			} else {
+				while (sourceIterator.hasNext()) {
 					currentItem = sourceIterator.next();
-				}
-				if (predicate.check(currentItem, index++)) {
-					onCheckedMatch = false;
-					return currentItem;
+					if (predicate.check(currentItem, index++)) {
+						return currentItem;
+					}
 				}
 			}
 			throw new NoSuchElementException();
