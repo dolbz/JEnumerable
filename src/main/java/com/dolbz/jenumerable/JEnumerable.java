@@ -602,12 +602,27 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** TakeWhile **/
 
 	public JEnumerable<TSource> takeWhile(final Predicate<TSource> predicate) {
-		throw new NotImplementedException();
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		return takeWhile(new IndexPredicate<TSource>() {
+
+			@Override
+			public boolean check(final TSource source, final Integer index) {
+				return predicate.check(source);
+			}
+		});
 	}
 
 	public JEnumerable<TSource> takeWhile(
 			final IndexPredicate<TSource> predicate) {
-		throw new NotImplementedException();
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		return new JEnumerable<TSource>(new TakeWhileIterable<TSource>(
+				wrappedIterable, predicate));
 	}
 
 	/** Skip **/
