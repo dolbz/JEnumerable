@@ -25,15 +25,15 @@ public class JEnumerableAssert {
 				if (expectedNext == null && actualNext == null) {
 					// Both null is fine
 				} else if (expectedNext == null || actualNext == null) {
-					throw new AssertionFailedError("Elements are not equal");
+					throw new AssertionFailedError(buildActuallySeenString(
+							actualSeen, "Elements are not equal: "));
 				} else if (!expectedNext.equals(actualNext)) {
-					throw new AssertionFailedError("Elements are not equal");
+					throw new AssertionFailedError(buildActuallySeenString(
+							actualSeen, "Elements are not equal: "));
 				}
 			} else {
 				String message = "Expected has more elements than actual: ";
-				for (Object seen : actualSeen) {
-					message += "[" + seen.toString() + "], ";
-				}
+				message = buildActuallySeenString(actualSeen, message);
 				throw new AssertionFailedError(message);
 			}
 		}
@@ -43,5 +43,13 @@ public class JEnumerableAssert {
 					"Actual has more elements than expected");
 		}
 
+	}
+
+	private static String buildActuallySeenString(
+			final List<Object> actualSeen, String message) {
+		for (Object seen : actualSeen) {
+			message += "[" + seen.toString() + "], ";
+		}
+		return message;
 	}
 }

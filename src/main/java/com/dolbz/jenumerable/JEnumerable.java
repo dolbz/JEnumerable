@@ -127,7 +127,7 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** Empty **/
 	public static <TResult> JEnumerable<TResult> empty() {
 		// TODO requires caching which may be interesting...
-		throw new IllegalStateException("Not Implemented yet");
+		throw new NotImplementedException();
 	}
 
 	/** Repeat **/
@@ -635,12 +635,27 @@ public class JEnumerable<TSource> implements Iterable<TSource> {
 	/** SkipWhile **/
 
 	public JEnumerable<TSource> skipWhile(final Predicate<TSource> predicate) {
-		throw new NotImplementedException(); // TODO
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		return skipWhile(new IndexPredicate<TSource>() {
+
+			@Override
+			public boolean check(final TSource source, final Integer index) {
+				return predicate.check(source);
+			}
+		});
 	}
 
 	public JEnumerable<TSource> skipWhile(
 			final IndexPredicate<TSource> predicate) {
-		throw new NotImplementedException(); // TODO
+		if (predicate == null) {
+			throw new IllegalArgumentException("predicate is null");
+		}
+
+		return new JEnumerable<TSource>(new SkipWhileIterable<TSource>(
+				wrappedIterable, predicate));
 	}
 
 	/** ToArray **/
